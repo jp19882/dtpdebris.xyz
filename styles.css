@@ -1,0 +1,319 @@
+body {
+/*  do not set width or height - it will mess up hover*/
+  background-color: #111111;
+  margin:  0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.splash {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 560;
+  opacity: 1;
+  transition: 0.25s;
+  transition-delay: 0.25s;
+  filter: blur(0.06vw);
+  transition: filter 1.5s linear;
+}
+
+.splash:hover {
+  filter: blur(0vw);
+  transition: filter 1.5s linear;
+}
+
+.splashBox {
+  position: absolute;
+  background: white;
+  border: 0.08vw solid rgba(170, 170, 170, 1.0);
+  width: 26vw;
+  height: 26vw;
+  left: 37vw;
+  top: 13vw;
+  z-index: 500;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.splashHeader {
+  color: white;
+  padding: 2vw;
+  font-family : helvetica;
+  font-weight: normal;
+  text-align: left;
+}
+
+.hidden{
+  transition : 0.5s;
+  display : none;
+}
+
+/*.btn {
+  z-index : -1;
+  left : 50%;
+  transform : translateX(-50%);
+}*/
+
+
+/*idle screen overlay*/
+#overlay {
+  pointer-events:none;
+  mix-blend-mode: difference;
+  position: absolute;
+  left: 5.625vw;
+  top: 2.75vh;
+  width: 90vw;
+  height: 48.5vw;
+  margin: 0;
+  padding: 0;
+  z-index: 550;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+
+html.idle #overlay {
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+
+.overlayHeader {
+  position: absolute;
+  color: dimgrey;
+  margin: 0vw;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  font-family : helvetica;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+/*custom cursor*/
+* {
+  cursor:none;
+}
+.cursor {
+  position: absolute;
+  width: 0.5vw;
+  height: 1.0vw;
+  top: -50%;
+  left: -50%;
+  margin: -0.5vw 0 0 -0.25vw;
+  border-radius: 0%;
+  background-color: white;
+  backface-visibility: hidden;
+  transition: transform 2s linear;
+  mix-blend-mode: exclusion;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/*main debris field*/
+#debrisField {
+  position: relative;
+  height: 1000vw;
+  width: 1000vw;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  transition: transform 25s ease-out;
+  transform: translate(var(--translate-x), var(--translate-y));
+  --translate-x: -454vw;
+  --translate-y: -478vw;
+}
+
+/*image animations*/
+img {
+  max-height: 20vw;
+  min-height: 20vw;
+}
+
+img:not([src]):not([srcset]) {
+  visibility: hidden;
+}
+
+.prz-wrapper {
+  position: absolute;
+  z-index: 1;
+  mix-blend-mode: difference;
+  filter: blur(0.8vw);
+  transition: filter 4s linear, z-index 2.5s linear;
+}
+.prz-wrapper:hover {
+  z-index: 104;
+  mix-blend-mode: normal;
+  filter: blur(0vw);
+  transition: filter 1s linear, z-index 0.75s linear;
+  }
+.unblur {
+  filter: blur(0.05vw);
+  z-index: 101;
+  transition: filter 3s linear, z-index 3s linear;
+}
+
+/*background grids*/
+.backgroundDiv {
+  position: absolute;
+  height: 1000vw;
+  width: 1000vw;
+  top: 0;
+  left: 0;
+  background-size: 12vw 12vw;
+  background-image:
+    linear-gradient(to right, rgba(170, 170, 120, 0.06) 0.005vw, transparent 0.1vw),
+    linear-gradient(to bottom, rgba(170, 170, 120, 0.06) 0.005vw, transparent 0.1vw);
+  z-index: -1;
+}
+
+.backgroundDiv::after {
+  position: absolute;
+  height: 1000vw;
+  width: 1000vw;
+  top: 0;
+  left: 0;
+  content: " ";
+  background-size: 4vw 4vw;
+  background-image: 
+    linear-gradient(to right, rgba(170, 170, 120, 0.07) 0.005vw, transparent 0.1vw),
+    linear-gradient(to bottom, rgba(170, 170, 120, 0.07) 0.005vw, transparent 0.1vw);
+  transition: opacity 1.5s linear;
+  z-index: 1;
+  opacity: 0;
+}
+
+.backgroundDiv:hover::after {
+  transition: opacity 6s linear;
+  opacity: 1;
+}
+
+.lineX {
+  position: absolute;
+  background: transparent;
+  top: 503.98vw;
+  left: 0vw;
+  height: 12vw;
+  opacity: 0.09;
+  filter: blur(0.01vw);
+  border-top: 0.18vw dashed grey;
+  width: 1000vw;
+  z-index: -200;
+}
+
+.lineY {
+  position: absolute;
+  background: transparent;
+  top: 0vw;
+  left: 503.98vw;
+  width: 12vw;
+  opacity: 0.09;
+  filter: blur(0.01vw);
+  border-left: 0.18vw dashed grey;
+  height: 1000vw;
+  z-index: -200;
+}
+
+/*animated noise texture*/
+.backgroundNoise {
+  pointer-events:none;
+  position: absolute;
+  top: -100vw;
+  left: -100vw;
+  right: -100vw;
+  bottom: -100vw;
+  width: 300vw;
+  height: 300vw;
+  z-index: 570;
+  background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+  background-size: 21vw 21vw;
+  background-repeat: repeat;
+  animation: bg-animation 0.6s infinite;
+  opacity: 1.0;
+  visibility: visible;
+}
+
+@keyframes bg-animation {
+    0% { transform: translate(0,0) }
+    10% { transform: translate(-5%,-5%) }
+    20% { transform: translate(-10%,5%) }
+    30% { transform: translate(5%,-10%) }
+    40% { transform: translate(-5%,15%) }
+    50% { transform: translate(-10%,5%) }
+    60% { transform: translate(15%,0) }
+    70% { transform: translate(0,10%) }
+    80% { transform: translate(-15%,0) }
+    90% { transform: translate(10%,5%) }
+    100% { transform: translate(5%,0) }
+}
+
+
+/*text style animation*/
+
+.p-container {
+  position: absolute;
+  width: 24vw;
+  mix-blend-mode: exclusion;
+}
+
+.p-blur {
+  padding: 0;
+  margin: 0;
+  font-family: "Helvetica Neue", Helvetica;
+  font-size: 1vw;
+  font-weight: normal;
+  z-index: 2;
+  filter: blur(0.15vw);
+  transform-origin: center;
+  transition: font-weight 1s linear, z-index 1s linear, filter 1s linear;
+  transition-delay: 1s;
+}
+
+.p-blur:hover {
+  font-weight: bold;
+  z-index: 103;
+  filter: blur(0vw);
+  transition: font-weight 0.5s linear, z-index 0.5s linear, filter 0.5s linear;
+  transition-delay: 0.25s;
+}
+
+.p-unblur {
+  z-index: 102;
+  filter: blur(0vw);
+  transition: z-index 1s linear, filter 1s linear;
+}
+
+.textLabel {
+  padding: 0;
+  margin: 0;
+  line-height: 0.45vw;
+  font-family: "Helvetica Neue", Helvetica;
+  font-size: 0.45vw;
+  font-weight: normal;
+  color: rgba(170, 170, 165, 0.8);
+  opacity: 0.0;
+  transition: opacity 2s linear;
+}
+
+.p-container:hover .textLabel {
+  opacity: 1;
+  transition: opacity 0.25s linear;
+  transition-delay: 0.5s;
+}
+
+.imgLabel {
+  line-height: 0.6vw;
+  position: absolute;
+  top: 20.2vw;
+  font-family: "Helvetica Neue", Helvetica;
+  font-size: 0.6vw;
+  font-weight: normal;
+  color: rgba(170, 170, 165, 0.8);
+}
+
+
+
+
